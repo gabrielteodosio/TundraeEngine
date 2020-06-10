@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="lwjgl">
+    <archive path="/Users/dacoder/Downloads/java3d/lib/jars/lwjgl.jar" />
+    <archive path="/Users/dacoder/Downloads/java3d/lib/jars/lwjgl_util.jar" />
+    <archive path="/Users/dacoder/Downloads/java3d/lib/jars/slick-util.jar" />
+  </library>
+</eclipse-userlibraries>
+
