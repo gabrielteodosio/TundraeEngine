@@ -1,6 +1,7 @@
 package dev.dacoder.toolbox;
 
 import dev.dacoder.entities.Camera;
+
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 

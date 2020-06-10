@@ -5,6 +5,7 @@ import dev.dacoder.models.RawModel;
 import dev.dacoder.models.TexturedModel;
 import dev.dacoder.shaders.StaticShader;
 import dev.dacoder.toolbox.Maths;
+
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
@@ -28,7 +29,7 @@ public class Renderer {
 	public void prepare() {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		GL11.glClearColor(1f, 0f, 0f, 1f);
+		GL11.glClearColor(0.1f, 0.1f, 0.1f, 1f);
 	}
 
 	public void render(Entity entity, StaticShader shader) {

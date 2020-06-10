@@ -2,15 +2,16 @@ package dev.dacoder.tester;
 
 import dev.dacoder.entities.Camera;
 import dev.dacoder.entities.Entity;
-import dev.dacoder.models.ModelGenerator;
-import dev.dacoder.models.TexturedModel;
-import org.lwjgl.opengl.Display;
-import dev.dacoder.engine.DisplayManager;
 import dev.dacoder.engine.Loader;
-import dev.dacoder.models.RawModel;
 import dev.dacoder.engine.Renderer;
+import dev.dacoder.models.RawModel;
+import dev.dacoder.models.TexturedModel;
+import dev.dacoder.models.ModelGenerator;
 import dev.dacoder.shaders.StaticShader;
+import dev.dacoder.engine.DisplayManager;
 import dev.dacoder.textures.ModelTexture;
+
+import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
 
 public class MainGameLoop {
@@ -23,7 +24,7 @@ public class MainGameLoop {
 		Renderer renderer = new Renderer(shader);
 
 		RawModel model = ModelGenerator.generateCube();
-		ModelTexture texture = new ModelTexture(loader.loadTexture("image"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("steel"));
 
 		TexturedModel texturedModel = new TexturedModel(model, texture);
 

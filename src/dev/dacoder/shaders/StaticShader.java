@@ -2,6 +2,7 @@ package dev.dacoder.shaders;
 
 import dev.dacoder.entities.Camera;
 import dev.dacoder.toolbox.Maths;
+
 import org.lwjgl.util.vector.Matrix4f;
 
 public class StaticShader extends ShaderProgram {
