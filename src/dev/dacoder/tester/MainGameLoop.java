@@ -1,5 +1,6 @@
 package dev.dacoder.tester;
 
+import dev.dacoder.entities.Entity;
 import dev.dacoder.models.TexturedModel;
 import org.lwjgl.opengl.Display;
 import dev.dacoder.engine.DisplayManager;
@@ -8,6 +9,7 @@ import dev.dacoder.models.RawModel;
 import dev.dacoder.engine.Renderer;
 import dev.dacoder.shaders.StaticShader;
 import dev.dacoder.textures.ModelTexture;
+import org.lwjgl.util.vector.Vector3f;
 
 public class MainGameLoop {
 
@@ -15,15 +17,14 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 
 		Loader loader = new Loader();
-		Renderer renderer = new Renderer();
-
 		StaticShader shader = new StaticShader();
+		Renderer renderer = new Renderer(shader);
 
 		float[] vertices = {
-			-0.5f,  0.5f, 0.0f, // v0
+			-0.5f, 0.5f, 0.0f,  // v0
 			-0.5f, -0.5f, 0.0f, // v1
-			 0.5f, -0.5f, 0.0f, // v2
-			 0.5f,  0.5f, 0.0f  // v3
+			0.5f, -0.5f, 0.0f,  // v2
+			0.5f, 0.5f, 0.0f    // v3
 		};
 
 		int[] indices = {
@@ -43,11 +44,15 @@ public class MainGameLoop {
 
 		TexturedModel texturedModel = new TexturedModel(model, texture);
 
+		Vector3f position = new Vector3f(0, 0, -1);
+		Vector3f rotation = new Vector3f(0, 0, 0);
+		Entity entity = new Entity(texturedModel, position, rotation, 1);
+
 		while (!Display.isCloseRequested()) {
 			renderer.prepare();
 
 			shader.start();
-			renderer.render(texturedModel);
+			renderer.render(entity, shader);
 			shader.stop();
 
 			DisplayManager.updateDisplay();
