@@ -10,11 +10,18 @@ public class Entity {
 	private Vector3f rotation;
 	private float scale;
 
+	public Entity(TexturedModel model, float posX, float posY, float posZ, float rotX, float rotY, float rotZ, float scale) {
+		this.model = model;
+		this.scale = scale;
+		this.position = new Vector3f(posX, posY, posZ);
+		this.rotation = new Vector3f(rotX, rotY, rotZ);
+	}
+
 	public Entity(TexturedModel model, Vector3f position, Vector3f rotation, float scale) {
 		this.model = model;
+		this.scale = scale;
 		this.position = position;
 		this.rotation = rotation;
-		this.scale = scale;
 	}
 
 	public void increasePosition(float dx, float dy, float dz) {

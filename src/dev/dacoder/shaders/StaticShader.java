@@ -1,5 +1,7 @@
 package dev.dacoder.shaders;
 
+import dev.dacoder.entities.Camera;
+import dev.dacoder.toolbox.Maths;
 import org.lwjgl.util.vector.Matrix4f;
 
 public class StaticShader extends ShaderProgram {
@@ -9,6 +11,7 @@ public class StaticShader extends ShaderProgram {
 
 	private int locationTransformationMatrix;
 	private int locationProjectionMatrix;
+	private int locationViewMatrix;
 
 	public StaticShader() {
 		super(VERTEX_FILE, FRAGMENT_FILE);
@@ -18,6 +21,7 @@ public class StaticShader extends ShaderProgram {
 	protected void getAllUniformLocations() {
 		locationTransformationMatrix = super.getUniformLocation("transformationMatrix");
 		locationProjectionMatrix = super.getUniformLocation("projectionMatrix");
+		locationViewMatrix = super.getUniformLocation("viewMatrix");
 	}
 
 	public void loadTransformationMatrix(Matrix4f matrix) {
@@ -26,6 +30,11 @@ public class StaticShader extends ShaderProgram {
 
 	public void loadProjectionMatrix(Matrix4f projection) {
 		super.loadMatrix(locationProjectionMatrix, projection);
+	}
+
+	public void loadViewMatrix(Camera camera) {
+		Matrix4f viewMatrix = Maths.createViewMatrix(camera);
+		super.loadMatrix(locationViewMatrix, viewMatrix);
 	}
 
 	@Override
