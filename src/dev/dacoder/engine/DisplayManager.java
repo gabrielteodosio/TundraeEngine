@@ -17,7 +17,7 @@ public class DisplayManager {
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
 			Display.create(new PixelFormat(), attribs);
-			Display.setTitle("Simple 3D Engine");
+			Display.setTitle("Tundrae Engine");
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
