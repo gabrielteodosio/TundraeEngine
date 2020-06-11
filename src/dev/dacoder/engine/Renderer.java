@@ -1,14 +1,18 @@
 package dev.dacoder.engine;
 
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL30;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
+
 import dev.dacoder.entities.Entity;
 import dev.dacoder.models.RawModel;
 import dev.dacoder.models.TexturedModel;
 import dev.dacoder.shaders.StaticShader;
 import dev.dacoder.toolbox.Maths;
-
-import org.lwjgl.opengl.*;
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
 
 public class Renderer {
 
@@ -40,11 +44,12 @@ public class Renderer {
 
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
+		GL20.glEnableVertexAttribArray(2);
 
 		Vector3f entityPosition = entity.getPosition();
 		Vector3f entityRotation = entity.getRotation();
 		Matrix4f transformationMatrix = Maths.createTransformationMatrix(entityPosition, entityRotation.x,
-			entityRotation.y, entityRotation.z, entity.getScale());
+				entityRotation.y, entityRotation.z, entity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);
 
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -53,6 +58,7 @@ public class Renderer {
 
 		GL20.glDisableVertexAttribArray(0);
 		GL20.glDisableVertexAttribArray(1);
+		GL20.glDisableVertexAttribArray(2);
 
 		GL30.glBindVertexArray(0);
 	}

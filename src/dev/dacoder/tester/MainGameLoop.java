@@ -1,19 +1,19 @@
 package dev.dacoder.tester;
 
-import dev.dacoder.engine.OBJLoader;
-import dev.dacoder.entities.Camera;
-import dev.dacoder.entities.Entity;
-import dev.dacoder.engine.Loader;
-import dev.dacoder.engine.Renderer;
-import dev.dacoder.models.RawModel;
-import dev.dacoder.models.TexturedModel;
-import dev.dacoder.models.ModelGenerator;
-import dev.dacoder.shaders.StaticShader;
-import dev.dacoder.engine.DisplayManager;
-import dev.dacoder.textures.ModelTexture;
-
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
+
+import dev.dacoder.engine.DisplayManager;
+import dev.dacoder.engine.Loader;
+import dev.dacoder.engine.OBJLoader;
+import dev.dacoder.engine.Renderer;
+import dev.dacoder.entities.Camera;
+import dev.dacoder.entities.Entity;
+import dev.dacoder.entities.Light;
+import dev.dacoder.models.RawModel;
+import dev.dacoder.models.TexturedModel;
+import dev.dacoder.shaders.StaticShader;
+import dev.dacoder.textures.ModelTexture;
 
 public class MainGameLoop {
 
@@ -34,14 +34,16 @@ public class MainGameLoop {
 		Entity entity = new Entity(texturedModel, position, rotation, 1);
 
 		Camera camera = new Camera();
+		Light light = new Light(camera.getPosition(), new Vector3f(1, 1, 1));
 
 		while (!Display.isCloseRequested()) {
-			entity.increaseRotation(0, 0.3f, 0);
+			entity.increaseRotation(0, 0.1f, 0);
 
 			renderer.prepare();
 			camera.move();
 
 			shader.start();
+			shader.loadLight(light);
 			shader.loadViewMatrix(camera);
 			renderer.render(entity, shader);
 			shader.stop();

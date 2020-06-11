@@ -1,15 +1,16 @@
 package dev.dacoder.engine;
 
-import dev.dacoder.models.RawModel;
-import org.lwjgl.util.vector.Vector2f;
-import org.lwjgl.util.vector.Vector3f;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
+
+import dev.dacoder.models.RawModel;
 
 public class OBJLoader {
 	public static RawModel loadObjModel(String fileName, Loader loader) {
@@ -95,7 +96,7 @@ public class OBJLoader {
 			indicesArray[i] = indices.get(i);
 		}
 
-		return loader.loadToVao(verticesArray, textureArray, indicesArray);
+		return loader.loadToVao(verticesArray, textureArray, normalsArray, indicesArray);
 	}
 
 	private static void processVertex(String[] vertexData, List<Integer> indices, List<Vector2f> textures,
