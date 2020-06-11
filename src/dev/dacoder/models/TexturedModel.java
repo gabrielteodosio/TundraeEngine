@@ -4,8 +4,8 @@ import dev.dacoder.textures.ModelTexture;
 
 public class TexturedModel {
 
-	private final RawModel rawModel;
-	private final ModelTexture texture;
+	private RawModel rawModel;
+	private ModelTexture texture;
 
 	public TexturedModel(RawModel rawModel, ModelTexture texture) {
 		this.rawModel = rawModel;

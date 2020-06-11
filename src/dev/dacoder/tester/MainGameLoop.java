@@ -1,5 +1,6 @@
 package dev.dacoder.tester;
 
+import dev.dacoder.engine.OBJLoader;
 import dev.dacoder.entities.Camera;
 import dev.dacoder.entities.Entity;
 import dev.dacoder.engine.Loader;
@@ -23,19 +24,19 @@ public class MainGameLoop {
 		StaticShader shader = new StaticShader();
 		Renderer renderer = new Renderer(shader);
 
-		RawModel model = ModelGenerator.generateCube();
+		RawModel model = OBJLoader.loadObjModel("robot", loader);
 		ModelTexture texture = new ModelTexture(loader.loadTexture("steel"));
 
 		TexturedModel texturedModel = new TexturedModel(model, texture);
 
-		Vector3f position = new Vector3f(0, 0, -2);
+		Vector3f position = new Vector3f(0, 0, -10);
 		Vector3f rotation = new Vector3f(0, 0, 0);
 		Entity entity = new Entity(texturedModel, position, rotation, 1);
 
 		Camera camera = new Camera();
 
 		while (!Display.isCloseRequested()) {
-			entity.increaseRotation(0.5f, 0.5f, 0);
+			entity.increaseRotation(0, 0.3f, 0);
 
 			renderer.prepare();
 			camera.move();
